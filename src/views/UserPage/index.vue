@@ -1,5 +1,5 @@
 <template>
-  <div>这是群管理</div>
+  <div>这是个人中心</div>
 </template>
 
 <style lang="scss" scoped>

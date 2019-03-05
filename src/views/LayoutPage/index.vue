@@ -5,8 +5,13 @@
                 <div class="project_name">
                   <span>通讯软件危险监测系统</span>
                 </div>
-                <Menu active-name="1-1" theme="dark" width="auto" :class="menuitemClasses">
-                    <MenuItem class="menuList" v-for="(item, index) in menu" :key="index" :name="item.name">
+                <Menu :on-open-change="selectMenuFn" active-name="1-1" theme="dark" width="auto" :class="menuitemClasses">
+                    <MenuItem
+                    class="menuList"
+                    v-for="(item, index) in menu"
+                    :key="index"
+                    :name="item.name"
+                    :to="item.path">
                         <IconLabel :icon='item.icon'/>
                         <span>{{item.title}}</span>
                     </MenuItem>
@@ -147,9 +152,9 @@ export default {
     return {
       isCollapsed: false,
       menu: [
-        {title: '监控器', icon: 'icon-monitor', name: '1-1'},
-        {title: '群管理', icon: 'icon-wx', name: '1-2'},
-        {title: '个人中心', icon: 'icon-user', name: '1-3'}
+        {title: '监控器', icon: 'icon-monitor', name: '1-1', path: '/'},
+        {title: '群管理', icon: 'icon-wx', name: '1-2', path: '/group'},
+        {title: '个人中心', icon: 'icon-user', name: '1-3', path: '/user'}
       ]
     }
   },
@@ -179,6 +184,9 @@ export default {
   methods: {
     collapsedSider () {
       this.$refs.side1.toggleCollapse()
+    },
+    selectMenuFn (name) {
+      console.log(name)
     }
   }
 }

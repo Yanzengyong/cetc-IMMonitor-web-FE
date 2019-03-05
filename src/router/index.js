@@ -1,13 +1,13 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-const IndexVue = () => import('../views/IndexPage/index.vue')
 const Layout = () => import('../views/LayoutPage/index.vue')
-
 const Login = () => import('../views/Login')
-
 const NotFound = () => import('../views/404.vue')
 const NoLogin = () => import('../views/403.vue')
+const IndexVue = () => import('../views/IndexPage/index.vue')
+const GroupPage = () => import('../views/GroupPage/index.vue')
+const UserPage = () => import('../views/UserPage/index.vue')
 
 Vue.use(Router)
 const router = new Router({
@@ -18,13 +18,23 @@ const router = new Router({
   routes: [
     {
       path: '/',
-      // redirect: '/main',
+      redirect: '/monitor',
       component: Layout,
       children: [
         {
-          path: '/main',
+          path: '/monitor',
           name: 'IndexVue',
           component: IndexVue
+        },
+        {
+          path: '/group',
+          name: 'GroupPage',
+          component: GroupPage
+        },
+        {
+          path: '/user',
+          name: 'UserPage',
+          component: UserPage
         }
       ]
     },
