@@ -1,29 +1,14 @@
-# cetc-policemonitor-web-fe
 
-## Project setup
-```
-yarn install
-```
+## Build Setup
 
-### Compiles and hot-reloads for development
-```
-yarn run serve
-```
+``` bash
+# install dependencies
+yarn
 
-### Compiles and minifies for production
-```
-yarn run build
-```
+# serve with hot reload at localhost:8080
+yarn dev
 
-### Run your tests
-```
-yarn run test
-```
+# build for production with minification
+yarn build
 
-### Lints and fixes files
 ```
-yarn run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
