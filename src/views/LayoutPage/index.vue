@@ -31,7 +31,7 @@
                     <Icon class="avatar-icon" type="md-arrow-dropdown" />
                   </div>
                 </Header>
-                <Content :style="{margin: '20px', background: '#fff', height: '80%'}">
+                <Content :style="{margin: '1px', background: '#fff', width: '100%', overflow: 'scroll', padding: '20px'}">
                   <router-view/>
                 </Content>
             </Layout>

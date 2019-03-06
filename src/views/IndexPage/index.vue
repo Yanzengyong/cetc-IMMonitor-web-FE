@@ -5,13 +5,13 @@
 </template>
 <style lang="scss">
 .progress-yellow .ivu-progress-bg{
-  background-color: #f5f10b;
+  background-color: #efeb3a;
 }
 .progress-violence .ivu-progress-bg{
-  background-color: #fa2922;
+  background-color: #fb4a44;
 }
 .progress-Politics .ivu-progress-bg{
-  background-color: #141b04;
+  background-color: #585858;
 }
 .ivu-progress-outer{
   display: flex;
