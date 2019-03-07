@@ -1,0 +1,32 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
+<!--
+2013-9-30: Created.
+-->
+<svg>
+<metadata>
+Created by iconfont
+</metadata>
+<defs>
+
+<font id="iconfont" horiz-adv-x="1024" >
+  <font-face
+    font-family="iconfont"
+    font-weight="500"
+    font-stretch="normal"
+    units-per-em="1024"
+    ascent="896"
+    descent="-128"
+  />
+    <missing-glyph />
+    
+    <glyph glyph-name="woman" unicode="&#59129;" d="M380.8 598.8L322 390.2c-12.6-45.6 41.4-63.4 54.6-20.6L429.2 562H444l-90.4-338H438v-254c0-46 64-46 64 0V224h20v-254c0-46 62-46 62 0V224h86.8l-92.4 338h16.8l52.6-192.4c13-43.8 66.6-25 54.6 20.4l-58.8 208.8c-8 23.6-36.4 65.2-84 67.2H465c-49.2-2-77.4-43.2-84.2-67.2zM585.2 757.6c0 41.2-32.8 74.6-73.2 74.6-40.4 0-73.2-33.4-73.2-74.6 0-41.2 32.8-74.6 73.2-74.6 40.4 0 73.2 33.4 73.2 74.6z"  horiz-adv-x="1024" />
+
+    
+    <glyph glyph-name="man" unicode="&#59130;" d="M512 682.8c41.2-0.2 74.6 33.2 74.6 74.6 0 41.2-33.4 74.6-74.6 74.6-41.2 0-74.6-33.4-74.6-74.6 0-41.2 33.4-74.6 74.6-74.6z m74.8-16.8H437.2c-56.4 0-93.2-49.6-93.2-96.8V342c0-44 62-44 62 0V552h12v-571.2c0-60.8 84-58.8 86 0V310h16v-329.4c3.4-62.4 86-56.4 86 0.2V552h10v-210c0-44 64-44 64 0V569.2c0 47-37 96.8-93.2 96.8z"  horiz-adv-x="1024" />
+
+    
+
+
+  </font>
+</defs></svg>

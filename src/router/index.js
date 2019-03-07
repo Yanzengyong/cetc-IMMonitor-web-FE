@@ -8,6 +8,7 @@ const NoLogin = () => import('../views/403.vue')
 const IndexVue = () => import('../views/IndexPage/index.vue')
 const GroupPage = () => import('../views/GroupPage/index.vue')
 const UserPage = () => import('../views/UserPage/index.vue')
+const HomePage = () => import('../views/HomePage/index.vue')
 
 Vue.use(Router)
 const router = new Router({
@@ -37,6 +38,11 @@ const router = new Router({
           component: UserPage
         }
       ]
+    },
+    {
+      path: '/home',
+      name: 'HomePage',
+      component: HomePage
     },
     {
       path: '/login',
