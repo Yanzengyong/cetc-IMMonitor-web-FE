@@ -1,6 +1,10 @@
 <template>
     <div class="layout">
       <Table border :columns="columns" :data="tableData"></Table>
+      <Spin fix v-if='this.$store.state.MonitorStore.isGroupList.length > 0 ? false : false'>
+        <Icon type="ios-loading" size=38 class="demo-spin-icon-load"></Icon>
+        <div class="text">个人及群组信息获取中...</div>
+      </Spin>
     </div>
 </template>
 <style lang="scss">
@@ -18,10 +22,22 @@
   align-items: center;
   justify-content: flex-start;
 }
+.text{
+  font-size: 16px;
+  margin-top: 8px;
+}
+.demo-spin-icon-load{
+  animation: ani-demo-spin 1s linear infinite;
+}
+@keyframes ani-demo-spin {
+        from { transform: rotate(0deg);}
+        50%  { transform: rotate(180deg);}
+        to   { transform: rotate(360deg);}
+    }
 </style>
 
 <script>
-import { Table, Button, Progress, Tag } from 'iview'
+import { Table, Button, Progress, Tag, Spin, Icon } from 'iview'
 export default {
   name: 'IndexPage',
   data () {
@@ -188,8 +204,8 @@ export default {
       ],
       tableData: [
         {
-          name: 'John Brown',
-          age: 18,
+          NickName: 'John Brown',
+          NumberCount: 18,
           address: 'New York No. 1 Lake Park',
           date: '2016-10-03'
         },
@@ -215,10 +231,15 @@ export default {
     }
   },
   components: {
-    Table
+    Table,
+    Spin,
+    Icon
   },
   computed: {
 
+  },
+  created () {
+    // this.wxInit()
   },
   methods: {
 

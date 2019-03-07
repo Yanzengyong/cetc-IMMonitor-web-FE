@@ -4,7 +4,7 @@
     <div class="audio-chat-box-left">
       <img :src="require('../../assets/images/toux1.jpeg')">
       <div
-        @click='playAudioFn'
+        @click.self='playAudioFn'
         class="chat-left">
         <span v-show="isDanger">暴</span>
         <Icon :icon='leftAudioPlay'/>
@@ -29,7 +29,7 @@
   <div v-else class="send-audio-chat">
     <div class="audio-chat-box-right">
       <div
-        @click='playAudioFn'
+        @click.self='playAudioFn'
         class="chat-right">
         <span v-show="isDanger">黄</span>
         <b>{{ countTime ? countTime : altogetherTimer }}s</b>
@@ -230,15 +230,28 @@ export default {
       default: 10
     }
   },
+  watch: {
+    countTime: function (val, oldVal) {
+      if (val === 0) {
+        clearInterval(timer2)
+        this.responseStyle === 'left'
+          ? this.leftAudioPlay = 'icon-goutongye_yuyin_you_00'
+          : this.rightAudioPlay = 'icon-goutongye_yuyin_zuo_00'
+      }
+    }
+  },
   methods: {
     // oncanplaythrough 事件在视频/音频（audio/video）可以正常播放且无需停顿和缓冲时触发
     oncanplaythrough () {
       this.altogetherTimer = Math.round(this.$refs.audioEl.duration) === Infinity ? 0 : Math.round(this.$refs.audioEl.duration)
     },
-    playAudioFn () {
+    playAudioFn (e) {
       let index = 0
       let audioEl = this.$refs.audioEl
-      if (this.$refs.audioEl.paused && this.altogetherTimer) {
+      // let audioEl = e.path[2].children[2].audioEl
+      // console.log(e.path[2].children[2].children[0])
+      // console.log(this.$refs.audioEl)
+      if (audioEl.paused && this.altogetherTimer) {
         audioEl.play()
         clearInterval(timer) // 清除计时器
         clearInterval(timer2) // 清除计时器
@@ -266,10 +279,6 @@ export default {
           ? this.leftAudioPlay = 'icon-goutongye_yuyin_you_00'
           : this.rightAudioPlay = 'icon-goutongye_yuyin_zuo_00'
       }
-      this.$emit('click')
-    },
-    playIcon (iconName) {
-
     }
   }
 }

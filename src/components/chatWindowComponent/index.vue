@@ -62,7 +62,7 @@
                 <img :src="require('../../assets/images/toux2.jpg')">
               </div>
               <div class="audioText">大手大脚卡上大卡司大厦将颠撒谎搭建大叔控快点哈说好久</div> -->
-              <WeChatAudio @click='playAudioFn' responseStyle='right'/>
+              <WeChatAudio responseStyle='right'/>
             </li>
           </ul>
         </div>
