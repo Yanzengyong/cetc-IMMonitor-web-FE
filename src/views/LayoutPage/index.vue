@@ -27,11 +27,22 @@
                     </div>
                   </div>
                   <div class="layout-header-bar-right">
-                    <Avatar shape="square" :src="require('../../assets/images/headpic.png')" size="large" />
-                    <Icon class="avatar-icon" type="md-arrow-dropdown" />
+                    <Dropdown trigger="click" style="margin-left: 20px">
+                      <a href="javascript:void(0)">
+                        <Avatar shape="square" :src="headImgUrl ? headImgUrl : require('../../assets/images/headpic.png')" size="large" />
+                        <Icon class="avatar-icon" type="md-arrow-dropdown" />
+                      </a>
+                      <DropdownMenu slot="list">
+                        <DropdownItem>驴打滚</DropdownItem>
+                        <DropdownItem>炸酱面</DropdownItem>
+                        <DropdownItem>豆汁儿</DropdownItem>
+                        <DropdownItem>冰糖葫芦</DropdownItem>
+                        <DropdownItem>北京烤鸭</DropdownItem>
+                      </DropdownMenu>
+                  </Dropdown>
                   </div>
                 </Header>
-                <Content :style="{margin: '20px', background: '#fff', height: '80%'}">
+                <Content :style="{margin: '1px', background: '#fff', width: '100%', overflow: 'scroll', padding: '20px'}">
                   <router-view/>
                 </Content>
             </Layout>
@@ -142,7 +153,7 @@
 </style>
 
 <script>
-import {Layout, Sider, Menu, MenuItem, Icon, Avatar} from 'iview'
+import {Layout, Sider, Menu, MenuItem, Icon, Avatar, Dropdown, DropdownMenu, DropdownItem} from 'iview'
 // import axios from '@/tools/api.request'
 // import { mapState } from 'vuex'
 import IconLabel from '../../components/iconComponent'
@@ -155,7 +166,8 @@ export default {
         {title: '监控器', icon: 'icon-monitor', name: '1-1', path: '/'},
         {title: '群管理', icon: 'icon-wx', name: '1-2', path: '/group'},
         {title: '个人中心', icon: 'icon-user', name: '1-3', path: '/user'}
-      ]
+      ],
+      headImgUrl: null
     }
   },
   components: {
@@ -165,7 +177,10 @@ export default {
     MenuItem,
     Icon,
     Avatar,
-    IconLabel
+    IconLabel,
+    Dropdown,
+    DropdownMenu,
+    DropdownItem
   },
   computed: {
     rotateIcon () {
@@ -181,12 +196,49 @@ export default {
       ]
     }
   },
+  created () {
+    this.openDB('xxx')
+    console.log(this.$store.state.MonitorStore.uin)
+    if (!this.$store.state.MonitorStore.uin && !this.$store.state.MonitorStore.username) {
+      // this.wxInit()
+    }
+  },
   methods: {
+    openDB (name) {
+      let request = window.indexedDB.open(name)
+      request.onerror = function (e) {
+        console.log(e)
+      }
+      request.onsuccess = function (e) {
+        return e.target.result
+      }
+    },
     collapsedSider () {
       this.$refs.side1.toggleCollapse()
     },
     selectMenuFn (name) {
       console.log(name)
+    },
+    async wxInit () {
+      try {
+        let data = await this.$store.dispatch('wxInit')
+        console.log(data)
+        if (data && data.code === 200) {
+          this.headImgUrl = data.data.HeadImgUrl
+          this.getGroupContact()
+        }
+      } catch (error) {
+
+      }
+    },
+    async getGroupContact () {
+      try {
+        let data = await this.$store.dispatch('getGroupContact')
+        console.log(data)
+        window.localStorage.setItem('groupListInfo', data.data)
+      } catch (error) {
+
+      }
     }
   }
 }
