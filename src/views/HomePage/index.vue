@@ -97,7 +97,8 @@
       console.log('beforeMount')
     },
     mounted () {
-      console.log('mounted')
+      window.onresize = () => {
+      }
     },
     beforeUpdate () {
       console.log('beforeUpdate')
