@@ -1,11 +1,11 @@
 <template>
-    <div class="layout">
-      <Table border :columns="columns" :data="tableData"></Table>
-      <Spin fix v-if='this.$store.state.MonitorStore.isGroupList.length > 0 ? false : false'>
-        <Icon type="ios-loading" size=38 class="demo-spin-icon-load"></Icon>
-        <div class="text">个人及群组信息获取中...</div>
-      </Spin>
-    </div>
+  <div>
+    <Table border :columns="columns" :data="groupList"></Table>
+    <Spin fix v-if='groupList.length > 0 ? false : false'>
+      <Icon type="ios-loading" size=38 class="demo-spin-icon-load"></Icon>
+      <div class="text">个人及群组信息获取中...</div>
+    </Spin>
+  </div>
 </template>
 <style lang="scss">
 .progress-yellow .ivu-progress-bg{
@@ -38,6 +38,7 @@
 
 <script>
 import { Table, Button, Progress, Tag, Spin, Icon } from 'iview'
+import { mapGetters } from 'vuex'
 export default {
   name: 'IndexPage',
   data () {
@@ -45,12 +46,12 @@ export default {
       columns: [
         {
           title: '群名称',
-          key: 'groupName',
+          key: 'NickName',
           width: 200
         },
         {
           title: '群人数',
-          key: 'peopleNumber',
+          key: 'MemberCount',
           width: 100
         },
         {
@@ -195,6 +196,7 @@ export default {
                 on: {
                   click: () => {
                     console.log(params.index)
+                    this.$router.push('/info')
                   }
                 }
               }, '详情')
@@ -202,32 +204,7 @@ export default {
           }
         }
       ],
-      tableData: [
-        {
-          NickName: 'John Brown',
-          NumberCount: 18,
-          address: 'New York No. 1 Lake Park',
-          date: '2016-10-03'
-        },
-        {
-          name: 'Jim Green',
-          age: 24,
-          address: 'London No. 1 Lake Park',
-          date: '2016-10-01'
-        },
-        {
-          name: 'Joe Black',
-          age: 30,
-          address: 'Sydney No. 1 Lake Park',
-          date: '2016-10-02'
-        },
-        {
-          name: 'Jon Snow',
-          age: 26,
-          address: 'Ottawa No. 2 Lake Park',
-          date: '2016-10-04'
-        }
-      ]
+      tableData: null
     }
   },
   components: {
@@ -236,10 +213,18 @@ export default {
     Icon
   },
   computed: {
-
+  // 使用对象展开运算符将 getter 混入 computed 对象中
+    ...mapGetters([
+      'groupList'
+      // ...
+    ])
   },
   created () {
     // this.wxInit()
+  },
+  mounted () {
+    // console.log(this.groupList.data)
+    // this.tableData = this.groupList
   },
   methods: {
 

@@ -7,66 +7,37 @@
       <div class="chat-inner-container">
         <div class="content">
           <ul>
-            <li class="response-chat">
-              <img :src="require('../../assets/images/toux1.jpeg')" alt="">
-              <div class="chat-left">
-                <p>的哈接电话啊是假的阿圣诞节啊说的带回家阿斯顿回家啊说</p>
-              </div>
+            <li>
+              <WeChatMessage responseStyle='left'/>
             </li>
-            <li class="response-chat">
-              <img :src="require('../../assets/images/toux1.jpeg')" alt="">
-              <div class="chat-left">
-                <p>的哈接电话啊是假的阿圣诞节啊说的带回家阿斯顿回家啊说</p>
-              </div>
+            <li>
+              <WeChatMessage responseStyle='left'/>
             </li>
-            <li class="send-chat">
-              <div class="chat-right">
-                <p>的哈接电话啊是假的阿圣诞节啊说的带回家阿斯顿回家啊说</p>
-              </div>
-              <img :src="require('../../assets/images/toux2.jpg')" alt="">
+            <li >
+              <WeChatMessage responseStyle='right'/>
             </li>
-            <li class="response-audio-chat">
-              <!-- <div class="audio-chat-box">
-                <img :src="require('../../assets/images/toux1.jpeg')">
-                <div
-                @click='playAudioFn'
-                class="chat-left">
-                  <span v-show="isRead">暴</span>
-                  <Icon :icon='leftAudioPlay'/>
-                  <b>8s</b>
-                </div>
-              </div>
-              <div class="audioText">大手大脚卡上大卡司好久</div> -->
-              <!-- 原生音频文件 -->
-              <!-- <div class="originalAudio">
-                <audio
-                  ref='audioEl'
-                  autobuffer
-                  controls="controls"
-                  id="myAudio"
-                  @canplaythrough="oncanplaythrough">
-                  <source
-                    :src="source"
-                    type="audio/mpeg">
-                </audio>
-              </div> -->
+            <li >
               <WeChatAudio responseStyle='left'/>
             </li>
-            <li class="send-audio-chat">
-              <!-- <div class="audio-chat-box">
-                <div class="chat-right">
-                  <span v-show="isRead">黄</span>
-                  <b>8s</b>
-                  <Icon :icon='rightAudioPlay'/>
-                </div>
-                <img :src="require('../../assets/images/toux2.jpg')">
-              </div>
-              <div class="audioText">大手大脚卡上大卡司大厦将颠撒谎搭建大叔控快点哈说好久</div> -->
+            <li >
               <WeChatAudio responseStyle='right'/>
             </li>
           </ul>
         </div>
      </div>
+    </div>
+    <!-- 原生音频文件 -->
+    <div class="originalAudio">
+      <audio
+        ref='audioEl'
+        autobuffer
+        controls="controls"
+        id="myAudio"
+        @canplaythrough="oncanplaythrough">
+        <source
+          :src="source"
+          type="audio/mpeg">
+      </audio>
     </div>
     <div class="chat-input-box">
       <textarea v-model="introduct" placeholder="Add a bio to your profile"></textarea>
@@ -122,155 +93,6 @@
             &:last-child{
               padding-bottom: 10px;
             }
-            .originalAudio{
-              width: 0;
-              height: 0;
-              audio{
-                width: 0;
-                height: 0;
-              }
-            }
-          }
-          .chat-left, .chat-right{
-            font-size: 15px;
-            min-height: 40px;
-            position: relative;
-            top: 0;
-            text-align: left;
-            border-radius: 5px;
-            padding: 8px 10px;
-            max-width: 330px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-          }
-          .chat-left {
-            margin-left: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background-color: #fff;
-          }
-          .chat-right{
-            margin-right: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background-color: #9EEA6A;
-          }
-          .chat-left:before, .chat-right:after{   /*用伪类写出小三角形*/
-            content: '';
-            display: block;
-            width: 0;
-            height: 0;
-            border: 8px solid transparent;
-            position: absolute;
-            top: 11px;
-          }
-          .chat-left:before{
-            border-right: 8px solid #fff;
-            left: -16px;
-          }
-          .chat-right:after{
-            border-left: 8px solid #9EEA6A;
-            right: -16px;
-          }
-          img{
-            width: 40px;
-            height: 40px;
-            position: relative;
-            top: 0;
-          }
-          .response-chat{
-            justify-content: flex-start;
-            img{
-              left: 0;
-            }
-          }
-          .send-chat{
-            justify-content: flex-end;
-            img{
-              right: 0;
-            }
-          }
-          .audioText{
-            max-width: 200px;
-            min-height: 40px;
-            background: #fff;
-            margin-top: 5px;
-            font-size: 13px;
-            padding: 8px;
-            position: relative;
-            display: flex;
-            align-items: center;
-          }
-          .response-audio-chat{
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: flex-start;
-            .audio-chat-box{
-              display: flex;
-              align-items: center;
-              justify-content: flex-start;
-              .chat-left{
-                min-width: 100px;
-                position: relative;
-                span{
-                  position: absolute;
-                  right: -26px;
-                  top: 0px;
-                  width: 20px;
-                  height: 20px;
-                  color: #fff;
-                  font-size: 12px;
-                  border-radius: 50%;
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                  background-color: #ff0000;
-                }
-                b{
-                  font-size: 14px;
-                  font-weight: normal;
-                }
-              }
-            }
-            .audioText{
-              left: 57px;
-            }
-          }
-          .send-audio-chat{
-            justify-content: flex-end;
-            .audio-chat-box{
-              display: flex;
-              align-items: center;
-              justify-content: flex-end;
-              .chat-right{
-                min-width: 100px;
-                position: relative;
-                span{
-                  position: absolute;
-                  left: -26px;
-                  top: 0px;
-                  width: 20px;
-                  height: 20px;
-                  color: #fff;
-                  font-size: 12px;
-                  border-radius: 50%;
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                  background-color: #ff0000;
-                }
-                b{
-                  font-size: 14px;
-                  font-weight: normal;
-                }
-              }
-            }
-            .audioText{
-              right: 57px;
-            }
           }
         }
       }
@@ -278,6 +100,14 @@
      /* for Chrome */
     .inner-container::-webkit-scrollbar {
         display: none;
+    }
+  }
+  .originalAudio{
+    width: 0;
+    height: 0;
+    audio{
+      width: 0;
+      height: 0;
     }
   }
   .chat-input-box{
@@ -304,6 +134,38 @@
 <script>
 import Icon from '../iconComponent'
 import WeChatAudio from '../weChatAudioComponent'
+import WeChatMessage from '../weChatMessageComponent'
+let msg = {
+  'msgid': '223423423423', // 消息id
+  'Type': 'Audio', // Text Image
+  'FromUserName': '@324242', // 信息发送人的唯一id（以@开头，仅在登录期间有效，重新登录唯一id会改变）
+  'FromNickName': '谢红韬',
+  'FromGoupUserName': '@@sdfasfsaf', // 信息来自的群的唯一id（以@@开头，仅在登录期间有效，重新登录唯一id会改变）
+  'FromGroupNickName': '哈哈群',
+  'Content': '今天拿着ak去天安门闹事',
+  'FileUrl': '/static/wxmsg/audio/xxx.wav',
+  'spam': '0, 1, 2', // 违禁消息、待人工审查
+  'label': {
+    'reject': [{
+      'name': '涉恐',
+      'hit': [
+        '天安门',
+        '闹事'
+      ]
+    }],
+    'review': [
+      {
+        'name': '敏感词汇',
+        'hit': [
+          'ak'
+        ]
+      }
+    ]
+  }
+}
+console.log(msg)
+let timer
+let timer2
 export default {
   data () {
     return {
@@ -313,16 +175,167 @@ export default {
       introduct: '',
       source: 'http://music.163.com/song/media/outer/url?id=431795489.mp3',
       altogetherTimer: null, // 音频总时长
-      accomplishData: null // 当前播放进度比
+      accomplishData: null, // 当前播放进度比
+      messageData: [
+        {
+          'msgid': '223423423423',
+          'Type': 'Audio',
+          'FromUserName': '@324242',
+          'FromNickName': '谢红韬',
+          'FromGoupUserName': '@@sdfasfsaf',
+          'FromGroupNickName': '哈哈群',
+          'Content': '今天拿着ak去天安门闹事',
+          'FileUrl': '/static/wxmsg/audio/xxx.wav',
+          'spam': '0, 1, 2',
+          'label': {
+            'reject': [{
+              'name': '涉恐',
+              'hit': [
+                '天安门',
+                '闹事'
+              ]
+            }],
+            'review': [
+              {
+                'name': '敏感词汇',
+                'hit': [
+                  'ak'
+                ]
+              }
+            ]
+          }
+        },
+        {
+          'msgid': '223423423423',
+          'Type': 'Audio',
+          'FromUserName': '@324242',
+          'FromNickName': '谢红韬',
+          'FromGoupUserName': '@@sdfasfsaf',
+          'FromGroupNickName': '哈哈群',
+          'Content': '今天拿着ak去天安门闹事',
+          'FileUrl': '/static/wxmsg/audio/xxx.wav',
+          'spam': '0, 1, 2',
+          'label': {
+            'reject': [{
+              'name': '涉恐',
+              'hit': [
+                '天安门',
+                '闹事'
+              ]
+            }],
+            'review': [
+              {
+                'name': '敏感词汇',
+                'hit': [
+                  'ak'
+                ]
+              }
+            ]
+          }
+        },
+        {
+          'msgid': '223423423423',
+          'Type': 'Audio',
+          'FromUserName': '@324242',
+          'FromNickName': '谢红韬',
+          'FromGoupUserName': '@@sdfasfsaf',
+          'FromGroupNickName': '哈哈群',
+          'Content': '今天拿着ak去天安门闹事',
+          'FileUrl': '/static/wxmsg/audio/xxx.wav',
+          'spam': '0, 1, 2',
+          'label': {
+            'reject': [{
+              'name': '涉恐',
+              'hit': [
+                '天安门',
+                '闹事'
+              ]
+            }],
+            'review': [
+              {
+                'name': '敏感词汇',
+                'hit': [
+                  'ak'
+                ]
+              }
+            ]
+          }
+        },
+        {
+          'msgid': '223423423423',
+          'Type': 'Audio',
+          'FromUserName': '@324242',
+          'FromNickName': '谢红韬',
+          'FromGoupUserName': '@@sdfasfsaf',
+          'FromGroupNickName': '哈哈群',
+          'Content': '今天拿着ak去天安门闹事',
+          'FileUrl': '/static/wxmsg/audio/xxx.wav',
+          'spam': '0, 1, 2',
+          'label': {
+            'reject': [{
+              'name': '涉恐',
+              'hit': [
+                '天安门',
+                '闹事'
+              ]
+            }],
+            'review': [
+              {
+                'name': '敏感词汇',
+                'hit': [
+                  'ak'
+                ]
+              }
+            ]
+          }
+        }
+      ]
     }
   },
   components: {
     Icon,
-    WeChatAudio
+    WeChatAudio,
+    WeChatMessage
+  },
+  watch () {
+    // id
   },
   methods: {
-    playAudioFn () {
-      console.log('111')
+    // oncanplaythrough 事件在视频/音频（audio/video）可以正常播放且无需停顿和缓冲时触发
+    oncanplaythrough () {
+      this.altogetherTimer = Math.round(this.$refs.audioEl.duration) === Infinity ? 0 : Math.round(this.$refs.audioEl.duration)
+    },
+    playAudioFn (e) {
+      let index = 0
+      let audioEl = this.$refs.audioEl
+      if (audioEl.paused && this.altogetherTimer) {
+        audioEl.play()
+        clearInterval(timer) // 清除计时器
+        clearInterval(timer2) // 清除计时器
+        timer = setInterval(() => {
+          this.countTime = this.altogetherTimer - Math.round(audioEl.currentTime)
+        }, 1000)
+        timer2 = setInterval(() => {
+          if (this.responseStyle === 'left') {
+            let num = index++
+            if (num <= 3) return this.leftAudioPlay = `icon-goutongye_yuyin_you_0${num}`
+            this.leftAudioPlay = 'icon-goutongye_yuyin_you_01'
+            index = 2
+          } else {
+            let num = index++
+            if (num <= 3) return this.rightAudioPlay = `icon-goutongye_yuyin_zuo_0${num}`
+            this.rightAudioPlay = 'icon-goutongye_yuyin_zuo_01'
+            index = 2
+          }
+        }, 500)
+      } else {
+        audioEl.pause()
+        clearInterval(timer) // 清除计时器
+        clearInterval(timer2) // 清除计时器
+        this.responseStyle === 'left'
+          ? this.leftAudioPlay = 'icon-goutongye_yuyin_you_00'
+          : this.rightAudioPlay = 'icon-goutongye_yuyin_zuo_00'
+      }
     }
   }
 }
