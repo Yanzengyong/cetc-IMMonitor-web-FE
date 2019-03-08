@@ -10,6 +10,7 @@ const GroupPage = () => import('../views/GroupPage/index.vue')
 const UserPage = () => import('../views/UserPage/index.vue')
 const HomePage = () => import('../views/HomePage/index.vue')
 const ChatPage = () => import('../views/ChatPage/index.vue')
+const ChatInfoPage = () => import('../views/ChatInfoPage/index.vue')
 
 Vue.use(Router)
 const router = new Router({
@@ -20,11 +21,11 @@ const router = new Router({
   routes: [
     {
       path: '/',
-      redirect: '/monitor',
+      redirect: '/monitor/list',
       component: Layout,
       children: [
         {
-          path: '/monitor',
+          path: '/monitor/list',
           name: 'IndexVue',
           component: IndexVue
         },
@@ -32,6 +33,11 @@ const router = new Router({
           path: '/group',
           name: 'GroupPage',
           component: GroupPage
+        },
+        {
+          path: '/info',
+          name: 'ChatInfoPage',
+          component: ChatInfoPage
         },
         {
           path: '/user',

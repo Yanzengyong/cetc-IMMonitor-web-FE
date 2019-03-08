@@ -5,22 +5,36 @@
                 <div class="project_name">
                   <span>通讯软件危险监测系统</span>
                 </div>
-                <Menu :on-open-change="selectMenuFn" active-name="1-1" theme="dark" width="auto" :class="menuitemClasses">
-                    <MenuItem
-                    class="menuList"
-                    v-for="(item, index) in menu"
+                <Menu
+                  :open-names="openName"
+                  :active-name="activeName"
+                  theme="dark"
+                  width="auto" >
+                  <Submenu
+                    v-for="(item, index) in subMenuItems"
                     :key="index"
-                    :name="item.name"
-                    :to="item.path">
-                        <IconLabel :icon='item.icon'/>
-                        <span>{{item.title}}</span>
-                    </MenuItem>
+                    :name="item.subMenuName">
+                    <template slot="title">
+                      <IconLabel :style="{marginRight: '10px'}" :icon='item.subMenuIcon'/>
+                      {{ item.subMenu }}
+                    </template>
+                    <MenuItem
+                      v-for="(ite, ind) in item.menuItems"
+                      :key="ind"
+                      :name="ite.menuName"
+                      :to="ite.menuPath">{{ ite.menu }}</MenuItem>
+                  </Submenu>
+                  <MenuItem
+                    :to="'/user'"
+                    name='user'>
+                    <IconLabel :style="{marginRight: '10px'}" icon='icon-user'/>
+                    个人中心
+                  </MenuItem>
                 </Menu>
             </Sider>
             <Layout>
                 <Header class="layout-header-bar">
                   <div class="layout-header-bar-left">
-                    <Icon @click="collapsedSider" :class="rotateIcon" :style="{margin: '0 20px'}" type="md-menu" size="40"></Icon>
                     <div class="layout-header-bar-left-company">
                       <img src="../../assets/images/logo.png" alt="">
                       <span>国家工程实验室</span>
@@ -42,7 +56,7 @@
                   </Dropdown>
                   </div>
                 </Header>
-                <Content :style="{margin: '1px', background: '#fff', width: '100%', overflow: 'scroll', padding: '20px'}">
+                <Content :style="{margin: '1px', background: '#fff', width: '100%', overflow: 'scroll', padding: '20px', height: '100%'}">
                   <router-view/>
                 </Content>
             </Layout>
@@ -88,7 +102,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 20px 0 0;
+    padding: 0 28px;
     box-sizing: border-box;
     .layout-header-bar-left{
       display: flex;
@@ -153,7 +167,7 @@
 </style>
 
 <script>
-import {Layout, Sider, Menu, MenuItem, Icon, Avatar, Dropdown, DropdownMenu, DropdownItem} from 'iview'
+import {Layout, Sider, Menu, MenuItem, Submenu, Icon, Avatar, Dropdown, DropdownMenu, DropdownItem} from 'iview'
 // import axios from '@/tools/api.request'
 // import { mapState } from 'vuex'
 import IconLabel from '../../components/iconComponent'
@@ -162,12 +176,16 @@ export default {
   data () {
     return {
       isCollapsed: false,
-      menu: [
-        {title: '监控器', icon: 'icon-monitor', name: '1-1', path: '/'},
-        {title: '群管理', icon: 'icon-wx', name: '1-2', path: '/group'},
-        {title: '个人中心', icon: 'icon-user', name: '1-3', path: '/user'}
-      ],
-      headImgUrl: null
+      subMenuItems: [this.menuFormat(
+        ['监控器', '1', 'icon-monitor'],
+        [
+          ['群列表', '1-1', '/monitor/list'],
+          ['控制台', '1-2', '/monitor/chat']
+        ]
+      )],
+      headImgUrl: null,
+      openName: ['1'],
+      activeName: '1-1'
     }
   },
   components: {
@@ -180,44 +198,64 @@ export default {
     IconLabel,
     Dropdown,
     DropdownMenu,
-    DropdownItem
+    DropdownItem,
+    Submenu
   },
   computed: {
-    rotateIcon () {
-      return [
-        'menu-icon',
-        this.isCollapsed ? 'rotate-icon' : ''
-      ]
-    },
-    menuitemClasses () {
-      return [
-        'menu-item',
-        this.isCollapsed ? 'collapsed-menu' : ''
-      ]
-    }
+
   },
   created () {
-    this.openDB('xxx')
-    console.log(this.$store.state.MonitorStore.uin)
     if (!this.$store.state.MonitorStore.uin && !this.$store.state.MonitorStore.username) {
-      // this.wxInit()
+      this.wxInit()
     }
   },
+  mounted () {
+
+  },
   methods: {
-    openDB (name) {
-      let request = window.indexedDB.open(name)
-      request.onerror = function (e) {
-        console.log(e)
-      }
-      request.onsuccess = function (e) {
-        return e.target.result
-      }
+    isChinese (temp) {
+      let reg = new RegExp('[\\u4E00-\\u9FFF]+$', 'g')
+      if (reg.test(temp)) return true
+      return false
     },
-    collapsedSider () {
-      this.$refs.side1.toggleCollapse()
+    getMenuItems (arr) {
+      let newArr = arr.map((curVal, index) => {
+        let ObjInit = {}
+        curVal.map((cv) => {
+          let Obj = {}
+          if (this.isChinese(cv)) {
+            Obj['menu'] = cv
+          } else if (cv.indexOf('-') !== -1) {
+            Obj['menuName'] = cv
+          } else if (cv.indexOf('/') !== -1) {
+            Obj['menuPath'] = cv
+          }
+          ObjInit = Object.assign(Obj, ObjInit)
+        })
+        return ObjInit
+      })
+      return newArr
     },
-    selectMenuFn (name) {
-      console.log(name)
+    getMenuMain (arr) {
+      let ObjInit = {}
+      arr.map((cv) => {
+        let Obj = {}
+        if (this.isChinese(cv)) {
+          Obj['subMenu'] = cv
+        } else if (cv.indexOf('-') !== -1) {
+          Obj['subMenuIcon'] = cv
+        } else {
+          Obj['subMenuName'] = cv
+        }
+        ObjInit = Object.assign(Obj, ObjInit)
+      })
+      return ObjInit
+    },
+    menuFormat (Arr, ArrItem) {
+      let Obj = {}
+      Obj = Object.assign(this.getMenuMain(Arr), {})
+      Obj['menuItems'] = this.getMenuItems(ArrItem)
+      return Obj
     },
     async wxInit () {
       try {
@@ -235,7 +273,6 @@ export default {
       try {
         let data = await this.$store.dispatch('getGroupContact')
         console.log(data)
-        window.localStorage.setItem('groupListInfo', data.data)
       } catch (error) {
 
       }

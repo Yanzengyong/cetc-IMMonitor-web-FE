@@ -1,29 +1,25 @@
 <template>
-<div>
   <div v-if="responseStyle === 'left'" class="response-audio-chat">
     <div class="audio-chat-box-left">
       <img :src="require('../../assets/images/toux1.jpeg')">
       <div
         @click.self='playAudioFn'
         class="chat-left">
-        <span v-show="isDanger">暴</span>
+        <span v-show="isDanger">
+          <a title="aaa">暴</a>
+          <a title="bbb">暴</a>
+          <a title="ccc">暴</a>
+          <a title="ddd">暴</a>
+          <a title="ddd">暴</a>
+          <a title="ddd">暴</a>
+          <a title="ddd">暴</a>
+        </span>
         <Icon :icon='leftAudioPlay'/>
-        <b>{{ countTime ? countTime : altogetherTimer }}s</b>
+        <b>{{ countTime }}s</b>
       </div>
     </div>
-    <div class="audioText-left">大手大脚卡上大卡司好久</div>
-    <!-- 原生音频文件 -->
-    <div class="originalAudio">
-      <audio
-        ref='audioEl'
-        autobuffer
-        controls="controls"
-        id="myAudio"
-        @canplaythrough="oncanplaythrough">
-        <source
-          :src="source"
-          type="audio/mpeg">
-      </audio>
+    <div class="audioText-left">
+      <p>大手大脚卡上大卡司好久打火机阿克苏河的撒科技活动卡上的好看撒蒂萨河大火烧开的哈说</p>
     </div>
   </div>
   <div v-else class="send-audio-chat">
@@ -32,27 +28,15 @@
         @click.self='playAudioFn'
         class="chat-right">
         <span v-show="isDanger">黄</span>
-        <b>{{ countTime ? countTime : altogetherTimer }}s</b>
+        <b>{{ countTime }}s</b>
         <Icon :icon='rightAudioPlay'/>
       </div>
       <img :src="require('../../assets/images/toux2.jpg')">
     </div>
-    <div class="audioText-right">大手大脚卡上大卡司大厦将颠撒谎搭建大叔控快点哈说好久</div>
-    <!-- 原生音频文件 -->
-    <div class="originalAudio">
-      <audio
-        ref='audioEl'
-        autobuffer
-        controls="controls"
-        id="myAudio"
-        @canplaythrough="oncanplaythrough">
-        <source
-          :src="source"
-          type="audio/mpeg">
-      </audio>
+    <div class="audioText-right">
+      <p>大手大脚卡上大卡司大厦将颠撒谎搭建大叔控快点哈说好久</p>
     </div>
   </div>
-</div>
 </template>
 
 <style lang="scss" scoped>
@@ -115,15 +99,20 @@ img{
   }
 }
 .audioText-left, .audioText-right{
-  max-width: 200px;
-  min-height: 40px;
-  background: #fff;
+  width: 100%;
   margin-top: 5px;
-  font-size: 13px;
-  padding: 8px;
+  font-size: 12px;
   position: relative;
   display: flex;
   align-items: center;
+  justify-content: flex-end;
+  p{
+    background: #fff;
+    position: relative;
+    padding: 8px;
+    max-width: 220px;
+    text-align: left;
+  }
 }
 .response-audio-chat{
   flex-direction: column;
@@ -137,18 +126,28 @@ img{
       min-width: 100px;
       position: relative;
       span{
+        width: 100px;
         position: absolute;
-        right: -26px;
+        right: -110px;
         top: 0px;
-        width: 20px;
-        height: 20px;
         color: #fff;
         font-size: 12px;
-        border-radius: 50%;
         display: flex;
         align-items: center;
-        justify-content: center;
-        background-color: #ff0000;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        a{
+          width: 16px;
+          height: 16px;
+          background-color: #ff0000;
+          border-radius: 50%;
+          margin-right: 5px;
+          margin-bottom: 3px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #fff;
+        }
       }
       b{
         font-size: 14px;
@@ -157,13 +156,16 @@ img{
     }
   }
   .audioText-left{
-    left: 57px;
+    p{
+      left: 57px;
+    }
   }
 }
 .send-audio-chat{
   flex-direction: column;
   align-items: flex-end;
   justify-content: flex-end;
+  width: 100%;
   .audio-chat-box-right{
     display: flex;
     align-items: center;
@@ -192,15 +194,17 @@ img{
     }
   }
   .audioText-right{
-    right: 57px;
+    p{
+      right: 57px;
+    }
   }
 }
 </style>
 
 <script>
 import Icon from '../iconComponent'
-let timer
-let timer2
+// let timer
+// let timer2
 export default {
   data () {
     return {
@@ -228,58 +232,65 @@ export default {
     audioTime: {
       type: Number,
       default: 10
+    },
+    countTime: {
+      type: String,
+      default: '--'
     }
   },
   watch: {
-    countTime: function (val, oldVal) {
-      if (val === 0) {
-        clearInterval(timer2)
-        this.responseStyle === 'left'
-          ? this.leftAudioPlay = 'icon-goutongye_yuyin_you_00'
-          : this.rightAudioPlay = 'icon-goutongye_yuyin_zuo_00'
-      }
-    }
+    // countTime: function (val, oldVal) {
+    //   if (val === 0) {
+    //     clearInterval(timer2)
+    //     this.responseStyle === 'left'
+    //       ? this.leftAudioPlay = 'icon-goutongye_yuyin_you_00'
+    //       : this.rightAudioPlay = 'icon-goutongye_yuyin_zuo_00'
+    //   }
+    // }
   },
   methods: {
-    // oncanplaythrough 事件在视频/音频（audio/video）可以正常播放且无需停顿和缓冲时触发
-    oncanplaythrough () {
-      this.altogetherTimer = Math.round(this.$refs.audioEl.duration) === Infinity ? 0 : Math.round(this.$refs.audioEl.duration)
-    },
-    playAudioFn (e) {
-      let index = 0
-      let audioEl = this.$refs.audioEl
-      // let audioEl = e.path[2].children[2].audioEl
-      // console.log(e.path[2].children[2].children[0])
-      // console.log(this.$refs.audioEl)
-      if (audioEl.paused && this.altogetherTimer) {
-        audioEl.play()
-        clearInterval(timer) // 清除计时器
-        clearInterval(timer2) // 清除计时器
-        timer = setInterval(() => {
-          this.countTime = this.altogetherTimer - Math.round(audioEl.currentTime)
-        }, 1000)
-        timer2 = setInterval(() => {
-          if (this.responseStyle === 'left') {
-            let num = index++
-            if (num <= 3) return this.leftAudioPlay = `icon-goutongye_yuyin_you_0${num}`
-            this.leftAudioPlay = 'icon-goutongye_yuyin_you_01'
-            index = 2
-          } else {
-            let num = index++
-            if (num <= 3) return this.rightAudioPlay = `icon-goutongye_yuyin_zuo_0${num}`
-            this.rightAudioPlay = 'icon-goutongye_yuyin_zuo_01'
-            index = 2
-          }
-        }, 500)
-      } else {
-        audioEl.pause()
-        clearInterval(timer) // 清除计时器
-        clearInterval(timer2) // 清除计时器
-        this.responseStyle === 'left'
-          ? this.leftAudioPlay = 'icon-goutongye_yuyin_you_00'
-          : this.rightAudioPlay = 'icon-goutongye_yuyin_zuo_00'
-      }
+    playAudioFn () {
+      // this.$emit('isClick', id)
     }
+    // oncanplaythrough 事件在视频/音频（audio/video）可以正常播放且无需停顿和缓冲时触发
+    // oncanplaythrough () {
+    //   this.altogetherTimer = Math.round(this.$refs.audioEl.duration) === Infinity ? 0 : Math.round(this.$refs.audioEl.duration)
+    // },
+    // playAudioFn (e) {
+    //   let index = 0
+    //   let audioEl = this.$refs.audioEl
+    //   // let audioEl = e.path[2].children[2].audioEl
+    //   // console.log(e.path[2].children[2].children[0])
+    //   // console.log(this.$refs.audioEl)
+    //   if (audioEl.paused && this.altogetherTimer) {
+    //     audioEl.play()
+    //     clearInterval(timer) // 清除计时器
+    //     clearInterval(timer2) // 清除计时器
+    //     timer = setInterval(() => {
+    //       this.countTime = this.altogetherTimer - Math.round(audioEl.currentTime)
+    //     }, 1000)
+    //     timer2 = setInterval(() => {
+    //       if (this.responseStyle === 'left') {
+    //         let num = index++
+    //         if (num <= 3) return this.leftAudioPlay = `icon-goutongye_yuyin_you_0${num}`
+    //         this.leftAudioPlay = 'icon-goutongye_yuyin_you_01'
+    //         index = 2
+    //       } else {
+    //         let num = index++
+    //         if (num <= 3) return this.rightAudioPlay = `icon-goutongye_yuyin_zuo_0${num}`
+    //         this.rightAudioPlay = 'icon-goutongye_yuyin_zuo_01'
+    //         index = 2
+    //       }
+    //     }, 500)
+    //   } else {
+    //     audioEl.pause()
+    //     clearInterval(timer) // 清除计时器
+    //     clearInterval(timer2) // 清除计时器
+    //     this.responseStyle === 'left'
+    //       ? this.leftAudioPlay = 'icon-goutongye_yuyin_you_00'
+    //       : this.rightAudioPlay = 'icon-goutongye_yuyin_zuo_00'
+    //   }
+    // }
   }
 }
 </script>

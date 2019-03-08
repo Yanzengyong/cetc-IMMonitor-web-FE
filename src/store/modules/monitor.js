@@ -10,9 +10,11 @@ const state = {
   username: null,
   nicname: null,
   headimgurl: null,
-  isGroupList: []
+  GroupList: []
 }
-const getters = {}
+const getters = {
+  groupList: (state) => state.GroupList
+}
 const mutations = {
   setUin (state, payload) {
     state.uin = payload
@@ -26,8 +28,8 @@ const mutations = {
   setHeadImgUrl (state, payload) {
     state.headimgurl = payload
   },
-  setIsGroupList (state, payload) {
-    state.isGroupList = payload
+  setGroupList (state, payload) {
+    state.GroupList = payload
   }
 }
 const actions = {
@@ -59,7 +61,7 @@ const actions = {
         withCredentials: true
       }).then((e) => {
         if (e && e.data && e.data.code === 200) {
-          commit('setIsGroupList', e.data.data)
+          commit('setGroupList', e.data.data)
         }
         resolve(e.data)
       })
