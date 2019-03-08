@@ -104,7 +104,7 @@
       box-shadow: 9px -5px 27px -11px #00f6ff inset;
       border-bottom: 1px solid #08c9d0;
       color: #ffffff;
-      border-image: linear-gradient(to right, #03f2fb, #161755) 21;
+      border-image: linear-gradient(to right, #03f2fb, #161755) 2;
       background: linear-gradient(to right, #131c57, #160546);
       font-size: 18px;
       > span {
@@ -282,7 +282,7 @@
     },
     methods: {
       wordPie () {
-        this.chart = echarts.init(document.getElementById('wordProportion'))
+        this.chart1 = echarts.init(document.getElementById('wordProportion'))
         var option = {
           tooltip: {
             trigger: 'item',
@@ -344,12 +344,11 @@
             }
           ]
         }
-        this.chart.setOption(option)
+        this.chart1.setOption(option)
       },
       outRule () {
         const a = document.getElementById('outRule')
-        console.log(a)
-        this.chart = echarts.init(a)
+        this.outRuleChart = echarts.init(a)
         var outRuleOption = {
           tooltip: {
             position: 'right'
@@ -422,12 +421,22 @@
             }
           }]
         }
-        this.chart.setOption(outRuleOption)
+        this.outRuleChart.setOption(outRuleOption)
       }
     },
     mounted () {
       // this.wordPie()
       this.outRule()
+      window.onresize = () => {
+        this.outRuleChart.resize()
+      }
+    },
+    beforeDestroy () {
+      if (!this.outRuleChart) {
+        return
+      }
+      this.outRuleChart.dispose()
+      this.outRuleChart = null
     }
   }
 </script>

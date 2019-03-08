@@ -25,7 +25,7 @@
     background-color: rgba(13, 42, 67, 0);
     transform: scale(1);
     transform-origin: left top;
-    background-size: 100%;
+    background-size: cover;
     font-family: 'Microsoft Yahei';
     color: #ffffff;
     overflow: hidden;

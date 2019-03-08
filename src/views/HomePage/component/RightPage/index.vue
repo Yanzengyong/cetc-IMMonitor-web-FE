@@ -87,7 +87,7 @@
       box-shadow: 9px -5px 27px -11px #00f6ff inset;
       border-bottom: 1px solid #08c9d0;
       color: #ffffff;
-      border-image: linear-gradient(to right, #03f2fb, #161755) 21;
+      border-image: linear-gradient(to right, #03f2fb, #161755) 2;
       background: linear-gradient(to right, #131c57, #160546);
       font-size: 18px;
       > span {
@@ -342,7 +342,7 @@
         }
       },
       wordCloud () {
-        this.chart = echarts.init(document.getElementById('wordCloud'))
+        this.chart1 = echarts.init(document.getElementById('wordCloud'))
         var cloudOption = {
           tooltip: {
             show: true
@@ -425,12 +425,25 @@
             ]
           }]
         }
-        this.chart.setOption(cloudOption)
+        this.chart1.setOption(cloudOption)
       }
     },
     mounted () {
       this.wordCloudBar()
       this.wordCloud()
+      window.onresize = () => {
+        this.chart.resize()
+        this.chart1.resize()
+      }
+    },
+    beforeDestroy () {
+      if (!this.chart || !this.chart1) {
+        return
+      }
+      this.chart.dispose()
+      this.chart1.dispose()
+      this.chart = null
+      this.chart1 = null
     }
   }
 </script>

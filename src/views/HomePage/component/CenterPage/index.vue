@@ -85,7 +85,7 @@
       box-shadow: 9px -5px 27px -11px #00f6ff inset;
       border-bottom: 1px solid #08c9d0;
       color: #ffffff;
-      border-image: linear-gradient(to right, #03f2fb, #161755) 21;
+      border-image: linear-gradient(to right, #03f2fb, #161755) 2;
       background: linear-gradient(to right, #131c57, #160546);
       font-size: 18px;
       > span {
@@ -235,7 +235,7 @@
     },
     methods: {
       countyMap () {
-        this.chart = echarts.init(document.getElementById('countyMap'))
+        this.countyMapChart = echarts.init(document.getElementById('countyMap'))
         echarts.registerMap('china', china)
         var option = {
           tooltip: {},
@@ -325,10 +325,10 @@
             }
           ]
         }
-        this.chart.setOption(option)
+        this.countyMapChart.setOption(option)
       },
       outMessage () {
-        this.chart = echarts.init(document.getElementById('outMessage'))
+        this.outMessageChart = echarts.init(document.getElementById('outMessage'))
         var option = {
           tooltip: {
             trigger: 'axis',
@@ -511,12 +511,26 @@
             }
           ]
         }
-        this.chart.setOption(option)
+        this.outMessageChart.setOption(option)
       }
     },
     mounted () {
       this.countyMap()
       this.outMessage()
+      window.onresize = () => {
+        console.log(111)
+        this.countyMapChart.resize()
+        this.outMessageChart.resize()
+      }
+    },
+    beforeDestroy () {
+      if (!this.countyMapChart) {
+        return
+      }
+      this.countyMapChart.dispose()
+      this.outMessageChart.dispose()
+      this.countyMapChart = null
+      this.outMessageChart = null
     }
   }
 </script>
