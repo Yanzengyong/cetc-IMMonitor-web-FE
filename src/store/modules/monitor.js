@@ -6,14 +6,15 @@ import axios from 'axios'
 const BaseUrl = 'http://172.16.25.249:5000/'
 
 const state = {
-  uin: null,
+  uin: '1812385440',
   username: null,
   nicname: null,
   headimgurl: null,
   GroupList: []
 }
 const getters = {
-  groupList: (state) => state.GroupList
+  groupList: (state) => state.GroupList,
+  uin: (state) => state.uin
 }
 const mutations = {
   setUin (state, payload) {

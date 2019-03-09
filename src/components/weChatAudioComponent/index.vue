@@ -209,7 +209,6 @@ export default {
   data () {
     return {
       altogetherTimer: null, // 音频总时长
-      countTime: null, // 倒计时时间
       leftAudioPlay: 'icon-goutongye_yuyin_you_00',
       rightAudioPlay: 'icon-goutongye_yuyin_zuo_00'
     }

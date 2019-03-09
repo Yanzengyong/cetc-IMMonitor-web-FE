@@ -1,12 +1,12 @@
 <template>
   <div class="chat_page_container">
     <ChatBox class="chat_window"/>
+    <!-- <ChatBox class="chat_window"/>
     <ChatBox class="chat_window"/>
     <ChatBox class="chat_window"/>
     <ChatBox class="chat_window"/>
     <ChatBox class="chat_window"/>
-    <ChatBox class="chat_window"/>
-    <ChatBox class="chat_window"/>
+    <ChatBox class="chat_window"/> -->
   </div>
 </template>
 

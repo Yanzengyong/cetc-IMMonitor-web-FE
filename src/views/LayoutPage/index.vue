@@ -179,8 +179,8 @@ export default {
       subMenuItems: [this.menuFormat(
         ['监控器', '1', 'icon-monitor'],
         [
-          ['群列表', '1-1', '/monitor/list'],
-          ['控制台', '1-2', '/monitor/chat']
+          ['控制台', '1-1', '/monitor/chat'],
+          ['群列表', '1-2', '/monitor/list']
         ]
       )],
       headImgUrl: null,
