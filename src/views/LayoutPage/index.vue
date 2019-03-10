@@ -57,7 +57,18 @@
                   </div>
                 </Header>
                 <Content :style="{margin: '1px', background: '#fff', width: '100%', overflow: 'scroll', padding: '20px', height: '100%'}">
-                  <router-view/>
+                  <router-view>
+                    dgasjdghdgjagdjg
+                    <!-- <Poptip
+                        confirm
+                        title="Are you sure delete this task?"
+                        @on-ok="ok"
+                        @on-cancel="cancel"
+                        ok-text="yes"
+                        cancel-text="no">
+                        <Button>Internationalization</Button>
+                    </Poptip> -->
+                  </router-view>
                 </Content>
             </Layout>
         </Layout>
@@ -167,7 +178,7 @@
 </style>
 
 <script>
-import {Layout, Sider, Menu, MenuItem, Submenu, Icon, Avatar, Dropdown, DropdownMenu, DropdownItem} from 'iview'
+import {Layout, Sider, Menu, MenuItem, Submenu, Icon, Avatar, Dropdown, DropdownMenu, DropdownItem, Poptip} from 'iview'
 // import axios from '@/tools/api.request'
 // import { mapState } from 'vuex'
 import IconLabel from '../../components/iconComponent'
@@ -199,7 +210,8 @@ export default {
     Dropdown,
     DropdownMenu,
     DropdownItem,
-    Submenu
+    Submenu,
+    Poptip
   },
   computed: {
 
@@ -213,6 +225,12 @@ export default {
 
   },
   methods: {
+    ok () {
+      console.log('ok')
+    },
+    cancel () {
+      console.log('cancel')
+    },
     isChinese (temp) {
       let reg = new RegExp('[\\u4E00-\\u9FFF]+$', 'g')
       if (reg.test(temp)) return true

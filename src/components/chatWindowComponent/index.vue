@@ -1,7 +1,22 @@
 <template>
   <div class="chat-window-container">
+    <Drawer :title="`${groupName}（成员列表）`" :closable="false" v-model="value1">
+      <p
+      v-for="(item, index) in 30"
+      :key="index"
+      class="chat-groupList">
+        <img src="../../assets/images/toux2.jpg" >
+        <span>张小明</span>
+      </p>
+    </Drawer>
     <div class="chat-header">
-      <span>一群帅哥哈哈群</span>
+      <span>{{ groupName }}</span>
+      <div
+      @click="openGroupPeopleList"
+      class="chat-groupNum">
+        <Icon icon='icon-groupNum'/>
+        <span>(666)</span>
+      </div>
     </div>
     <div class="chat-content">
       <div class="chat-inner-container">
@@ -60,6 +75,25 @@
 </template>
 
 <style lang="scss" scoped>
+.chat-groupList{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  img{
+    width: 40px;
+    height: 40px;
+    margin-bottom: 6px;
+  }
+  span{
+    font-size: 14px;
+    color: #333;
+    padding-left: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
 .chat-window-container{
   width: 100%;
   box-shadow: 0 0 2px 2px rgba(0, 0, 0, .3);
@@ -76,6 +110,15 @@
     span{
       font-size: 16px;
       color: #333;
+    }
+    .chat-groupNum{
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      cursor: pointer;
+      span{
+        margin-left: 6px;
+      }
     }
   }
   .chat-content{
@@ -150,6 +193,7 @@ import Icon from '../iconComponent'
 import WeChatAudio from '../weChatAudioComponent'
 import WeChatMessage from '../weChatMessageComponent'
 import WeChatNews from '../weChatNewsComponent'
+import { Drawer } from 'iview'
 import { mapGetters } from 'vuex'
 // let msg = {
 //   'msgid': '223423423423', // 消息id
@@ -185,6 +229,8 @@ import { mapGetters } from 'vuex'
 export default {
   data () {
     return {
+      groupName: '还有谁，妈的群',
+      value1: false,
       isRead: true,
       leftAudioPlay: 'icon-goutongye_yuyin_you_00',
       rightAudioPlay: 'icon-goutongye_yuyin_zuo_00',
@@ -269,7 +315,8 @@ export default {
     Icon,
     WeChatAudio,
     WeChatMessage,
-    WeChatNews
+    WeChatNews,
+    Drawer
   },
   computed: {
   // 使用对象展开运算符将 getter 混入 computed 对象中
@@ -282,6 +329,10 @@ export default {
     this.dataFormat(this.messageData)
   },
   methods: {
+    // 打开群人数列表
+    openGroupPeopleList () {
+      this.value1 = true
+    },
     // 数据格式化
     dataFormat (data) {
       data['msg_list'].map((item) => {
