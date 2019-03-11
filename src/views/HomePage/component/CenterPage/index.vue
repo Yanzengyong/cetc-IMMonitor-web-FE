@@ -306,7 +306,9 @@
           },
           grid: {
             top: '23%',
-            bottom: '15%'
+            bottom: '15%',
+            left: '7%',
+            right: '4%'
           },
           xAxis: [
             {
@@ -403,7 +405,7 @@
           dataZoom: [
             {
               start: 0,
-              end: 5,
+              end: 8,
               type: 'slider',
               show: true,
               xAxisIndex: [0],
