@@ -236,31 +236,31 @@
           },
           {
             imgUrl: require('../../../../assets/images/home_01.png'),
-            text: '王一小'
+            text: '张忠'
           },
           {
             imgUrl: require('../../../../assets/images/home_01.png'),
-            text: '王一小'
+            text: '王林'
           },
           {
             imgUrl: require('../../../../assets/images/home_01.png'),
-            text: '王一小'
+            text: '陈杰'
           },
           {
             imgUrl: require('../../../../assets/images/home_01.png'),
-            text: '王一小'
+            text: '赵敏'
           },
           {
             imgUrl: require('../../../../assets/images/home_01.png'),
-            text: '王一小'
+            text: '赵昌'
           },
           {
             imgUrl: require('../../../../assets/images/home_01.png'),
-            text: '王一小'
+            text: '李小龙'
           },
           {
             imgUrl: require('../../../../assets/images/home_01.png'),
-            text: '王一小'
+            text: '王杰一'
           }
         ],
         sexPortion:
