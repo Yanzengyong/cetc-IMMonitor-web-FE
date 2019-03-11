@@ -269,7 +269,7 @@
               zoom: 3,
               data: china.features.map(item => ({
                 name: item.properties.name,
-                value: Math.random() * 1500
+                value: Math.round(Math.random() * 1500)
               })),
               itemStyle: {
                 areaColor: '#000'
