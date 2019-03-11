@@ -182,58 +182,10 @@
   export default {
     data () {
       return {
-        list: [
-          {
-            imgUrl: require('../../../../assets/images/home_01.png'),
-            text: '王一小'
-          },
-          {
-            imgUrl: require('../../../../assets/images/home_01.png'),
-            text: '王一小'
-          },
-          {
-            imgUrl: require('../../../../assets/images/home_01.png'),
-            text: '王一小'
-          },
-          {
-            imgUrl: require('../../../../assets/images/home_01.png'),
-            text: '王一小'
-          },
-          {
-            imgUrl: require('../../../../assets/images/home_01.png'),
-            text: '王一小'
-          },
-          {
-            imgUrl: require('../../../../assets/images/home_01.png'),
-            text: '王一小'
-          },
-          {
-            imgUrl: require('../../../../assets/images/home_01.png'),
-            text: '王一小'
-          },
-          {
-            imgUrl: require('../../../../assets/images/home_01.png'),
-            text: '王一小'
-          }
-        ],
-        sexPortion:
-          [
-            {
-              text: '女',
-              percent: '60%',
-              total: '912',
-              font: '&#xe6f9;'
-            },
-            {
-              text: '男',
-              percent: '20%',
-              total: '228',
-              font: '&#xe6f9;'
-            }
-          ]
       }
     },
     methods: {
+      // 涉敏感词云群成员省市分布
       countyMap () {
         this.countyMapChart = echarts.init(document.getElementById('countyMap'))
         echarts.registerMap('china', china)
@@ -310,7 +262,7 @@
               }
             },
             {
-              name: 'categoryA',
+              name: '涉敏词云分布',
               type: 'map',
               geoIndex: 0,
               // layoutCenter: ['80%', '80%'],
@@ -328,6 +280,7 @@
         this.countyMapChart.setOption(option)
         this.countyMapChart.resize()
       },
+      // 违规消息占比趋势
       outMessage () {
         this.outMessageChart = echarts.init(document.getElementById('outMessage'))
         let base = +new Date(2018, 9, 3)
@@ -514,6 +467,7 @@
               name: '时段变化',
               type: 'line',
               yAxisIndex: 1,
+              smooth: true,
               data: data,
               // data: [2.0, 2.2, 3.3, 4.5, 6.3, 10.2, 20.3, 23.4, 23.0, 16.5, 12.0, 6.2],
               itemStyle: {

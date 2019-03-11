@@ -281,6 +281,7 @@
       }
     },
     methods: {
+      // 第一版本涉敏词云占比，无使用
       wordPie () {
         this.chart1 = echarts.init(document.getElementById('wordProportion'))
         var option = {
@@ -346,6 +347,7 @@
         }
         this.chart1.setOption(option)
       },
+      // 违规信息占比雷达图
       outRule () {
         const a = document.getElementById('outRule')
         this.outRuleChart = echarts.init(a)

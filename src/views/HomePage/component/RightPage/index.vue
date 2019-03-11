@@ -51,7 +51,7 @@
     </div>
     <div class="bottom-block">
       <div class="center-title">
-        总结
+        群敏感信息关键词
       </div>
       <div id="wordCloud" class="wordCloud">
         <!--<p>-->
@@ -215,6 +215,13 @@
         }
       }
     }
+    .tip{
+      padding:5px;
+      width:20px;
+      height:3px;
+      dispaly:inline-block;
+      background: #00baff;
+    }
   }
 </style>
 
@@ -279,6 +286,7 @@
       }
     },
     methods: {
+      // 敏感词云TOP8排行榜
       wordCloudBar () {
         this.chart = echarts.init(document.getElementById('wordCloudBar'))
         var option = {
@@ -288,7 +296,7 @@
             axisPointer: {
               type: 'shadow'
             },
-            formatter: '{b0}: {c0}'
+            formatter: '<span class="tip"></span>{b0}: {c0}'
           },
           grid: {
             left: '0',
@@ -342,6 +350,7 @@
           }
         }
       },
+      // 群敏感信息关键词
       wordCloud () {
         this.chart1 = echarts.init(document.getElementById('wordCloud'))
         var cloudOption = {
@@ -349,7 +358,7 @@
             show: true
           },
           series: [{
-            name: '词云评价',
+            name: '群敏感信息关键词',
             type: 'wordCloud',
             size: ['80%', '80%'],
             textPadding: 0,

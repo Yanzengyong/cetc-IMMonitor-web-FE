@@ -4,12 +4,15 @@
       <div></div>
       <!--<h3>通讯软件群组监管分析系统</h3>-->
     </div>
+    <!--左边栏布局-->
     <div class="left">
       <LeftPage ref="leftPage"></LeftPage>
     </div>
+    <!--中间布局-->
     <div class="center">
       <CenterPage ref="centerPage"></CenterPage>
     </div>
+    <!--右边布局-->
     <div class="right">
       <RightPage ref="rightPage"></RightPage>
     </div>
@@ -87,16 +90,8 @@
       RightPage,
       CenterPage
     },
-    beforeCreate () {
-      console.log('breforeCreate')
-    },
-    created () {
-      console.log('created')
-    },
-    beforeMount () {
-      console.log('beforeMount')
-    },
     mounted () {
+      // 窗口监听事件 监听echarts图例随窗口大小自适应变化
       window.onresize = () => {
         this.$refs.leftPage.outRule()
         this.$refs.centerPage.countyMap()
@@ -104,24 +99,6 @@
         this.$refs.rightPage.wordCloudBar()
         this.$refs.rightPage.wordCloud()
       }
-    },
-    beforeUpdate () {
-      console.log('beforeUpdate')
-    },
-    updated () {
-      console.log('updated')
-    },
-    activated () {
-      console.log('activated')
-    },
-    deactivated () {
-      console.log('deactivated')
-    },
-    beforeDestroy () {
-      console.log('beforeDestroy')
-    },
-    destroyed () {
-      console.log('destroyed')
     }
   }
 </script>
