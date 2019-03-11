@@ -20,30 +20,11 @@
             </tr>
           </thead>
           <tbody>
-            <tr class="danger">
-              <td>1</td>
-              <td>XXX</td>
-              <td>1.00 <span><span class="arrow toTop"></span><span class="straight top"></span></span></td>
-            </tr>
-            <tr class="danger">
-              <td>2</td>
-              <td>XXX</td>
-              <td>1.00 <span><span class="straight down"></span><span class="arrow toDown"></span></span></td>
-            </tr>
-            <tr class="danger">
-              <td>3</td>
-              <td>XXX</td>
-              <td>1.00 <span><span class="straight down"></span><span class="arrow toDown"></span></span></td>
-            </tr>
-            <tr>
-              <td>4</td>
-              <td>XXX</td>
-              <td>1.00 <span><span class="straight down"></span><span class="arrow toDown"></span></span></td>
-            </tr>
-            <tr>
-              <td>5</td>
-              <td>XXX</td>
-              <td>1.00 <span><span class="straight down"></span><span class="arrow toDown"></span></span></td>
+            <tr v-for="(item,index) in list" :class="index < 3 ? 'danger':''">
+              <td>{{index + 1}}</td>
+              <td>{{item.title}}</td>
+              <td  v-if="item.status=='up'">{{item.value}}<span><span class="arrow toTop"></span><span class="straight top"></span></span></td>
+              <td  v-if="item.status=='down'">{{item.value}}<span><span class="straight down"></span><span class="arrow toDown"></span></span></td>
             </tr>
           </tbody>
         </table>
@@ -236,53 +217,36 @@
       return {
         list: [
           {
-            imgUrl: require('../../../../assets/images/home_01.png'),
-            text: '王一小'
+            title: 'XXXX',
+            value: '1.00',
+            status: 'up'
           },
           {
-            imgUrl: require('../../../../assets/images/home_01.png'),
-            text: '王一小'
+            title: 'XXXX',
+            value: '1.00',
+            status: 'up'
           },
           {
-            imgUrl: require('../../../../assets/images/home_01.png'),
-            text: '王一小'
+            title: 'XXXX',
+            value: '1.00',
+            status: 'up'
           },
           {
-            imgUrl: require('../../../../assets/images/home_01.png'),
-            text: '王一小'
+            title: 'XXXX',
+            value: '1.00',
+            status: 'down'
           },
           {
-            imgUrl: require('../../../../assets/images/home_01.png'),
-            text: '王一小'
+            title: 'XXXX',
+            value: '1.00',
+            status: 'up'
           },
           {
-            imgUrl: require('../../../../assets/images/home_01.png'),
-            text: '王一小'
-          },
-          {
-            imgUrl: require('../../../../assets/images/home_01.png'),
-            text: '王一小'
-          },
-          {
-            imgUrl: require('../../../../assets/images/home_01.png'),
-            text: '王一小'
+            title: 'XXXX',
+            value: '1.00',
+            status: 'down'
           }
-        ],
-        sexPortion:
-          [
-            {
-              text: '女',
-              percent: '60%',
-              total: '912',
-              font: '&#xe6f9;'
-            },
-            {
-              text: '男',
-              percent: '20%',
-              total: '228',
-              font: '&#xe6f9;'
-            }
-          ]
+        ]
       }
     },
     methods: {
