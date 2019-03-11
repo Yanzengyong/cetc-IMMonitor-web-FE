@@ -21,7 +21,7 @@ const router = new Router({
   routes: [
     {
       path: '/',
-      redirect: '/monitor/list',
+      redirect: '/monitor/chat',
       component: Layout,
       children: [
         {
