@@ -108,7 +108,7 @@
     }
     .center-block{
       flex: 1 1 auto;
-      background: rgba(16, 0, 64, 0.4);
+      background: rgba(24, 8, 74, 0.2);
       >ul{
         position: absolute;
         top: 0;
@@ -175,7 +175,7 @@
     }
     .bottom-block{
       flex: 1.2 1.2 auto;
-      background: rgba(16, 0, 64, 0.4);
+      background: rgba(24, 8, 74, 0.3);
       .outMessage{
         position: absolute;
         top: 4.7vh;

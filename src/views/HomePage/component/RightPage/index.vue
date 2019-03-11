@@ -55,7 +55,7 @@
     display: flex;
     flex-flow: column;
     bottom: 0;
-    background: rgba(16, 0, 64, 0.4);
+    background: rgba(16, 0, 64, 0.2);
     filter: blur(0px);
     .char{
       font-family: 'Aril';
