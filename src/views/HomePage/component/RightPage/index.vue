@@ -19,15 +19,19 @@
               <th>分数及趋势</th>
             </tr>
           </thead>
+        </table>
+        <vue-seamless-scroll :data="list"  :class-option="classOption" class="seamless-warp">
+        <table>
           <tbody>
-            <tr v-for="(item,index) in list" :class="index < 3 ? 'danger':''">
-              <td>{{index + 1}}</td>
-              <td>{{item.title}}</td>
-              <td  v-if="item.status=='up'">{{item.value}}<span><span class="arrow toTop"></span><span class="straight top"></span></span></td>
-              <td  v-if="item.status=='down'">{{item.value}}<span><span class="straight down"></span><span class="arrow toDown"></span></span></td>
-            </tr>
+          <tr v-for="(item,index) in list" :class="index < 3 ? 'danger':''">
+            <td>{{index + 1}}</td>
+            <td>{{item.title}}</td>
+            <td  v-if="item.status=='up'"><span>{{item.value}}</span><span><span class="arrow toTop"></span><span class="straight top"></span></span></td>
+            <td  v-if="item.status=='down'">{{item.value}}<span><span class="straight down"></span><span class="arrow toDown"></span></span></td>
+          </tr>
           </tbody>
         </table>
+        </vue-seamless-scroll>
       </div>
     </div>
     <div class="bottom-block">
@@ -96,27 +100,36 @@
         bottom: 0;
         left: 0;
         right: 0;
-        overflow: auto;
+        overflow: hidden;
         padding: 10px;
-        >table{
+        table{
           width: 100%;
           .danger{
             td{
               color: red;
             }
           }
-          >thead>tr>th,>tbody>tr>td{
+          thead tr th,tbody tr td{
             text-align: center;
             line-height: 36px;
+            width: 34%;
+          }
+          thead tr th:last-child,tbody tr td:last-child{
+            width: 32%;
           }
           >thead>tr>th{
             font-size:16px;
           }
-          >tbody>tr>td{
+        }
+        .seamless-warp{
+          width: 100%;
+          height: 26vh;
+          overflow: hidden;
+          tbody tr td{
             font-size:14px;
           }
-          tbody>tr td:last-child{
-            position: relative;
+          tbody tr td:last-child{
+            width: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -209,7 +222,6 @@
 <script>
   import echarts from 'echarts'
   import '../../../../assets/iconfont/iconfont.css'
-
   require('echarts-wordcloud')
 
   export default {
@@ -245,10 +257,43 @@
             title: 'XXXX',
             value: '1.00',
             status: 'down'
+          },
+          {
+            title: 'XXXX',
+            value: '1.00',
+            status: 'down'
+          },
+          {
+            title: 'XXXX',
+            value: '1.00',
+            status: 'up'
+          },
+          {
+            title: 'XXXX',
+            value: '1.00',
+            status: 'down'
+          },
+          {
+            title: 'XXXX',
+            value: '1.00',
+            status: 'down'
+          },
+          {
+            title: 'XXXX',
+            value: '1.00',
+            status: 'up'
+          },
+          {
+            title: 'XXXX',
+            value: '1.00',
+            status: 'down'
           }
         ]
       }
     },
+    // components: {
+    //   scroll
+    // },
     methods: {
       // 敏感词云TOP8排行榜
       wordCloudBar () {
@@ -401,6 +446,13 @@
         }
         this.chart1.setOption(cloudOption)
         this.chart1.resize()
+      }
+    },
+    computed: {
+      classOption: function () {
+        return {
+          step: 0.5
+        }
       }
     },
     mounted () {

@@ -5,6 +5,8 @@ import store from './store'
 import 'iview/dist/styles/iview.css'
 // import echarts from 'echarts'
 // Vue.prototype.$echarts = echarts
+import scroll from 'vue-seamless-scroll'
+Vue.use(scroll)
 Vue.config.productionTip = false
 
 Vue.filter('formatMoney', (value) => {
