@@ -109,13 +109,10 @@
               color: red;
             }
           }
-          thead tr th,tbody tr td{
+          thead tr th:not(:last-child),tbody tr td:not(:last-child){
             text-align: center;
             line-height: 36px;
             width: 34%;
-          }
-          thead tr th:last-child,tbody tr td:last-child{
-            width: 32%;
           }
           >thead>tr>th{
             font-size:16px;
