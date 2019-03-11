@@ -26,7 +26,7 @@
           <tr v-for="(item,index) in list" :class="index < 3 ? 'danger':''">
             <td>{{index + 1}}</td>
             <td>{{item.title}}</td>
-            <td  v-if="item.status=='up'"><span>{{item.value}}</span><span><span class="arrow toTop"></span><span class="straight top"></span></span></td>
+            <td  v-if="item.status=='up'">{{item.value}}<span><span class="arrow toTop"></span><span class="straight top"></span></span></td>
             <td  v-if="item.status=='down'">{{item.value}}<span><span class="straight down"></span><span class="arrow toDown"></span></span></td>
           </tr>
           </tbody>
@@ -124,6 +124,7 @@
           overflow: hidden;
           tbody tr td{
             font-size:14px;
+            font-weight: normal;
           }
           tbody tr td:last-child{
             width: 100%;
@@ -136,7 +137,6 @@
               flex-direction: column;
               position: relative;
               margin-left: 0.2vw;
-              top:-0.2vh;
             }
             .arrow{
               top: 0;
