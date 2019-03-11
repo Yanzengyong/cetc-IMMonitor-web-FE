@@ -15,10 +15,10 @@
             <div>15%</div>
           </div>
           <div>
-            <div>成都：50人</div>
+            <div class="maxValue">成都：50人</div>
             <div>乐山：39人</div>
             <div>攀枝花：42人</div>
-            <div>南充49人</div>
+            <div>南充：49人</div>
             <div>绵阳：49人</div>
           </div>
         </li>
@@ -29,10 +29,10 @@
             <div>15%</div>
           </div>
           <div>
-            <div>成都：50人</div>
             <div>乐山：39人</div>
             <div>攀枝花：42人</div>
-            <div>南充49人</div>
+            <div>南充：49人</div>
+            <div class="maxValue">成都：50人</div>
             <div>绵阳：49人</div>
           </div>
         </li>
@@ -43,10 +43,10 @@
             <div>15%</div>
           </div>
           <div>
-            <div>成都：50人</div>
             <div>乐山：39人</div>
+            <div class="maxValue">成都：50人</div>
             <div>攀枝花：42人</div>
-            <div>南充49人</div>
+            <div>南充：49人</div>
             <div>绵阳：49人</div>
           </div>
         </li>
@@ -119,6 +119,10 @@
         flex-direction: column;
         align-items: center;
         padding: 15px 30px;
+        .maxValue{
+          font-size: 15px;
+          color: #ffffff;
+        }
         >li:not(:first-child){
           margin-top: 2vh;
         }
@@ -139,12 +143,15 @@
             justify-content: flex-start;
             >div:first-child{
               flex: 2 2 auto;
+              width: 44%;
             }
             >div:nth-child(2){
               flex: 2 2 auto;
+              width: 44%;
             }
             >div:last-child{
               flex: 1 1 auto;
+              width: 12%;
             }
           }
           >div:last-child{
@@ -156,6 +163,11 @@
             margin-top: 1.2vh;
             >div{
               flex: 1 1 auto;
+              width: 22%;
+            }
+            >div:last-child{
+              flex: 1 1 auto;
+              width: 12%;
             }
           }
         }
