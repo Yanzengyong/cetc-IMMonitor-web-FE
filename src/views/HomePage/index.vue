@@ -5,13 +5,13 @@
       <!--<h3>通讯软件群组监管分析系统</h3>-->
     </div>
     <div class="left">
-      <LeftPage></LeftPage>
+      <LeftPage ref="leftPage"></LeftPage>
     </div>
     <div class="center">
-      <CenterPage></CenterPage>
+      <CenterPage ref="centerPage"></CenterPage>
     </div>
     <div class="right">
-      <RightPage></RightPage>
+      <RightPage ref="rightPage"></RightPage>
     </div>
   </div>
 </template>
@@ -98,6 +98,11 @@
     },
     mounted () {
       window.onresize = () => {
+        this.$refs.leftPage.outRule()
+        this.$refs.centerPage.countyMap()
+        this.$refs.centerPage.outMessage()
+        this.$refs.rightPage.wordCloudBar()
+        this.$refs.rightPage.wordCloud()
       }
     },
     beforeUpdate () {

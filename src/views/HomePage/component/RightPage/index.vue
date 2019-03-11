@@ -329,6 +329,7 @@
           ]
         }
         this.chart.setOption(option)
+        this.chart.resize()
       },
       createRandomItemStyle () {
         return {
@@ -348,7 +349,7 @@
             show: true
           },
           series: [{
-            name: '医疗评价',
+            name: '词云评价',
             type: 'wordCloud',
             size: ['80%', '80%'],
             textPadding: 0,
@@ -426,15 +427,12 @@
           }]
         }
         this.chart1.setOption(cloudOption)
+        this.chart1.resize()
       }
     },
     mounted () {
       this.wordCloudBar()
       this.wordCloud()
-      window.onresize = () => {
-        this.chart.resize()
-        this.chart1.resize()
-      }
     },
     beforeDestroy () {
       if (!this.chart || !this.chart1) {

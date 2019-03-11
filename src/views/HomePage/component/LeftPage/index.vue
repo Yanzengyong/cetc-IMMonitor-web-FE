@@ -422,14 +422,12 @@
           }]
         }
         this.outRuleChart.setOption(outRuleOption)
+        this.outRuleChart.resize()
       }
     },
     mounted () {
       // this.wordPie()
       this.outRule()
-      window.onresize = () => {
-        this.outRuleChart.resize()
-      }
     },
     beforeDestroy () {
       if (!this.outRuleChart) {

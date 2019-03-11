@@ -326,9 +326,21 @@
           ]
         }
         this.countyMapChart.setOption(option)
+        this.countyMapChart.resize()
       },
       outMessage () {
         this.outMessageChart = echarts.init(document.getElementById('outMessage'))
+        let base = +new Date(2018, 9, 3)
+        const oneDay = 24 * 3600 * 1000
+        const date = []
+        const dataDay = []
+        const data = [Math.random() * 300]
+        for (let i = 1; i < 300; i++) {
+          let now = new Date(base += oneDay)
+          date.push([now.getFullYear(), now.getMonth() + 1, now.getDate()].join('/'))
+          data.push(Math.round((Math.random() + 0.1) * 440))
+          dataDay.push(Math.round((Math.random() + 0.1) * 426))
+        }
         var option = {
           tooltip: {
             trigger: 'axis',
@@ -339,18 +351,16 @@
               }
             }
           },
-          legend: {
-            data: ['蒸发量', '降水量', '平均温度']
-          },
           grid: {
             top: '23%',
-            bottom: '10%'
+            bottom: '15%'
           },
           xAxis: [
             {
               type: 'category',
               maxInterval: 3600 * 1000 * 24,
-              data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+              // data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+              data: date,
               axisPointer: {
                 type: 'shadow'
               },
@@ -383,7 +393,7 @@
               type: 'value',
               name: '数量',
               min: 0,
-              max: 250,
+              max: 500,
               interval: 50,
               axisLine: {
                 lineStyle: {
@@ -412,8 +422,8 @@
               type: 'value',
               name: '时段',
               min: 0,
-              max: 25,
-              interval: 5,
+              max: 500,
+              interval: 50,
               axisLabel: {
                 show: false,
                 formatter: '{value} °C'
@@ -437,50 +447,52 @@
               }
             }
           ],
-          // dataZoom: [
-          //   {
-          //     start: 75,
-          //     end: 100,
-          //     type: 'slider',
-          //     show: true,
-          //     xAxisIndex: [0],
-          //     handleSize: 0,
-          //     height: 8,
-          //     handleColor: '#ccc',
-          //     handleStyle: {
-          //       borderColor: '#cacaca',
-          //       borderWidth: '1',
-          //       shadowBlur: 2,
-          //       background: '#ccc',
-          //       shadowColor: '#ccc'
-          //     },
-          //     fillerColor: new echarts.graphic.LinearGradient(1, 0, 0, 0, [
-          //       {
-          //         offset: 0,
-          //         color: '#1eb5e5'
-          //       },
-          //       {
-          //         offset: 1,
-          //         color: '#1eb5e5'
-          //       }]),
-          //     backgroundColor: '#ccc',
-          //     showDataShadow: 'auto',
-          //     showDetail: false,
-          //     handleIcon: 'M-292,322.2c-3.2,0-6.4-0.6-9.3-1.9c-2.9-1.2-5.4-2.9-7.6-5.1s-3.9-4.8-5.1-7.6c-1.3-3-1.9-6.1-1.9-9.3c0-3.2,0.6-6.4,1.9-9.3c1.2-2.9,2.9-5.4,5.1-7.6s4.8-3.9,7.6-5.1c3-1.3,6.1-1.9,9.3-1.9c3.2,0,6.4,0.6,9.3,1.9c2.9,1.2,5.4,2.9,7.6,5.1s3.9,4.8,5.1,7.6c1.3,3,1.9,6.1,1.9,9.3c0,3.2-0.6,6.4-1.9,9.3c-1.2,2.9-2.9,5.4-5.1,7.6s-4.8,3.9-7.6,5.1C-285.6,321.5-288.8,322.2-292,322.2z',
-          //     filterMode: 'filter'
-          //   },
-          //   {
-          //     type: 'inside',
-          //     show: true,
-          //     xAxisIndex: [0],
-          //     start: 0,
-          //     end: 1000
-          //   }],
+          dataZoom: [
+            {
+              start: 0,
+              end: 5,
+              type: 'slider',
+              show: true,
+              xAxisIndex: [0],
+              handleSize: 0,
+              height: 8,
+              handleColor: '#ccc',
+              bottom: 0,
+              handleStyle: {
+                borderColor: '#cacaca',
+                borderWidth: '1',
+                shadowBlur: 2,
+                background: '#ccc',
+                shadowColor: '#ccc'
+              },
+              fillerColor: new echarts.graphic.LinearGradient(1, 0, 0, 0, [
+                {
+                  offset: 0,
+                  color: '#1eb5e5'
+                },
+                {
+                  offset: 1,
+                  color: '#1eb5e5'
+                }]),
+              backgroundColor: '#ccc',
+              showDataShadow: 'auto',
+              showDetail: false,
+              handleIcon: 'M-292,322.2c-3.2,0-6.4-0.6-9.3-1.9c-2.9-1.2-5.4-2.9-7.6-5.1s-3.9-4.8-5.1-7.6c-1.3-3-1.9-6.1-1.9-9.3c0-3.2,0.6-6.4,1.9-9.3c1.2-2.9,2.9-5.4,5.1-7.6s4.8-3.9,7.6-5.1c3-1.3,6.1-1.9,9.3-1.9c3.2,0,6.4,0.6,9.3,1.9c2.9,1.2,5.4,2.9,7.6,5.1s3.9,4.8,5.1,7.6c1.3,3,1.9,6.1,1.9,9.3c0,3.2-0.6,6.4-1.9,9.3c-1.2,2.9-2.9,5.4-5.1,7.6s-4.8,3.9-7.6,5.1C-285.6,321.5-288.8,322.2-292,322.2z',
+              filterMode: 'filter'
+            },
+            {
+              type: 'inside',
+              show: true,
+              xAxisIndex: [0],
+              start: 0,
+              end: 1000
+            }],
           series: [
             {
               name: '每天变化',
               type: 'bar',
-              data: [2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3],
+              data: dataDay,
+              // data: [2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3],
               itemStyle: {
                 normal: {
                   color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
@@ -502,7 +514,8 @@
               name: '时段变化',
               type: 'line',
               yAxisIndex: 1,
-              data: [2.0, 2.2, 3.3, 4.5, 6.3, 10.2, 20.3, 23.4, 23.0, 16.5, 12.0, 6.2],
+              data: data,
+              // data: [2.0, 2.2, 3.3, 4.5, 6.3, 10.2, 20.3, 23.4, 23.0, 16.5, 12.0, 6.2],
               itemStyle: {
                 normal: {
                   color: '#08dbe6'
@@ -512,16 +525,12 @@
           ]
         }
         this.outMessageChart.setOption(option)
+        this.outMessageChart.resize()
       }
     },
     mounted () {
       this.countyMap()
       this.outMessage()
-      window.onresize = () => {
-        console.log(111)
-        this.countyMapChart.resize()
-        this.outMessageChart.resize()
-      }
     },
     beforeDestroy () {
       if (!this.countyMapChart) {
