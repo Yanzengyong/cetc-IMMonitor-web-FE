@@ -76,7 +76,7 @@
       background: linear-gradient(to right, #131c57, #160546);
       font-size: 18px;
       > span {
-        margin-left: 0.5vw;
+        margin:0 0.2vw;
       }
     }
     >div{
