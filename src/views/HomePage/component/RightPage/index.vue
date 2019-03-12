@@ -121,7 +121,7 @@
         .seamless-warp{
           width: 100%;
           height: 26vh;
-          overflow: auto;
+          overflow: hidden;
           tbody tr td{
             font-size:14px;
             font-weight: normal;
